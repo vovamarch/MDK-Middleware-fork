@@ -926,7 +926,15 @@ INPUT                  = src/Network.md \
                          src/network_trbl_shoot.md \
                          src/securing_communication.md \
                          src/certification.md \
-                         src/network_examples.md \
+                         src/nw_ref_example.md \
+                         src/example_http_server.md \
+                         src/example_https_server.md \
+                         src/example_http_upload.md \
+                         src/example_ftp_server.md \
+                         src/example_telnet_server.md \
+                         src/example_smtp_client.md \
+                         src/example_bsd_client_server.md \
+                         src/example_snmp_agent.md \
                          src/network_resource_requirements.md \
                          src/net_function_overview.md \
                          src/network_diffs.md \

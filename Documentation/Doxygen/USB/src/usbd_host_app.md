@@ -21,7 +21,7 @@ The USB Component comes with a set of software utilities that you can use as tem
 
 ## WinUSB Test {#winusb_app}
 
-If you are following the \ref dev_cc_tutorial tutorial, you can test the connection between your custom class USB device and a Microsoft Windows PC with this application. The binary `WinUSB_Test.exe` (which does not require installation) is available in the `install_dir\ARM\PACK\Keil\MDK-Middleware\x.y.z\Utilities\WinUSB_Test\Release` folder (where `install_dir` refers to the installation directory of Arm Keil MDK, default `C:\Keil_v5` and x >= 7, y >= 5, z >= 0).
+If you are following the \ref dev_cc_tutorial tutorial, you can test the connection between your custom class USB device and a Microsoft Windows PC with this application. The binary `WinUSB_Test.exe` (which does not require installation) is available in the `install_dir\ARM\PACK\Keil\MDK-Middleware\x.y.z\Utilities\WinUSB_Test\Release` folder (where `install_dir` refers to the installation directory of Arm Keil MDK uVision).
 
 To check the WinUSB utility with your board, do the following:
  -# Download the USB Device `WinUSB_Echo` application to your board.

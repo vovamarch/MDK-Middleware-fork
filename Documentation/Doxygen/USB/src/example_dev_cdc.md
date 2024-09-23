@@ -10,7 +10,7 @@ The following picture shows an exemplary connection of the development board and
 
 ## Project Organization {#prj_org_dev_cdc}
 
-The USB Device Virtual COM port project is available as part of the USB Device Reference Application. \ref usbd_ref_example gives an overview on that.
+The USB Device Virtual COM port project is available as part of the \ref usbd_ref_example "USB Device Reference example".
 
 **Application Source Files**
 
@@ -19,16 +19,18 @@ The USB Device Virtual COM port project is available as part of the USB Device R
 
 **Software Components Configuration Files**
 
-Configuration files for the software components used in the project are available in the `\RTE\` directory and can be modified by users to adjust the operation of related components.
+Configuration files for the software components used in the project are available in the `/RTE/` directory and can be modified by users to adjust the operation of related components. Section \ref usbd_rte_components gives an overview about the components and their dependencies.
 
 Following configuration files are provided with this example:
 
- - `\RTE\USB\USBD_Config_CDC_0.h`: \ref usbd_cdcFunctions_acm_conf "USB Device CDC (ACM) configuration".
- - `\RTE\USB\USBD_Config_0.h`: \ref usbd_coreFunctions_conf "USB Device Core configuration".
- - `\RTE\USB\USB_Debug.h`: configuration for the level of debug events in the USB component (with Event Recorder). See \ref usbd_evr "USB Device:Debug Events".
- - `\RTE\CMSIS\RTX_Config.h` and `\RTE\CMSIS\RTX_Config.h`: [CMSIS-RTX configuration files](https://arm-software.github.io/CMSIS-RTX/latest/config_rtx5.html) for the RTOS Kernel.
+ - For the USB component, in the `/RTE/USB/` folder:
+   - `USBD_Config_CDC_0.h`: \ref usbd_cdcFunctions_acm_conf "USB Device CDC (ACM) configuration".
+   - `USBD_Config_0.h`: \ref usbd_coreFunctions_conf "USB Device Core configuration".
+   - `USB_Debug.h`: \ref usbDevEvrConfig "USB Device Debug configuration".
+ - For the CMSIS components, in the `/RTE/CMSIS/` folder:
+   - `RTX_Config.h` and `RTX_Config.h`: [CMSIS-RTX Configuration files](https://arm-software.github.io/CMSIS-RTX/latest/config_rtx5.html) for the RTOS Kernel.
 
-After a board layer is added to the project, its configuration files for the board and device components will become available in the local `\RTE` directory as well.
+When a board layer is added to the project, corresponding configuration files for the board and device components will become available in the local `/RTE/` directory as well.
 
 **Board Layer**
 
@@ -39,7 +41,9 @@ In order to build the USB Device Virtual COM port project it needs to be extende
 
 ## Build the Project {#prj_build_dev_cdc}
 
-ToDo: reference to the general flow
+Open the **USB Device** Reference Example and select **CDC** as an active project for the build process. Make sure the compatible board layer is configured.
+
+Section [Working with MDK-Middleware Examples](../General/working_with_examples.html) explains in more details how to access, configure and build an MDK-Middleware example project for your target hardware.
 
 
 ## Run the Example {#prj_run_dev_cdc}
@@ -48,10 +52,9 @@ ToDo: reference to the general flow
 
 Board-specific setup such as jumpers, USB ports, power supply, etc are documented in the board layer description (`README.md`) of your selected target. It also lists supported IOs such as LEDs and Buttons.
 
- - Connect the UART on the development board to your PC (you might need an USB to serial RS232 adapter). Use an USB cable to
-  connect your development board to the Host PC and power up your board.
- - The **Welcome to the Found New Hardware Wizard** appears. Installation of the driver is described in detail in the
-  `Abstract.txt` file.
+ - Load the firmware image to your development board.
+ - Connect the UART on the development board to your PC (you might need an USB to serial RS232 adapter). Use an USB cable to connect your development board to the Host PC and power up your board.
+ - The **Welcome to the Found New Hardware Wizard** appears. Installation of the driver is described in detail in the `Abstract.txt` file.
 
 **PC Software**
 

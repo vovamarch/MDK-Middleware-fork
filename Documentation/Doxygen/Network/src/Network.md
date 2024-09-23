@@ -76,6 +76,6 @@ This user's guide contains the following chapters:
   channels. It also explains how to create your own SSL/TLS certificates.
 - The chapter \ref certification explains how to test the TCP/IP stack with industry-standard tools against common
   vulnerabilities.
-- \ref nw_examples are a good starting point for implementing your own networking device.
+- \ref nw_ref_example is a good starting point for implementing your own networking device.
 - The \ref network_diffs compares "migration guide" contains information how to migrate from previous versions to the
   Network Component v8.

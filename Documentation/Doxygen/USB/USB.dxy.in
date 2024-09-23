@@ -925,14 +925,14 @@ INPUT                  = src/usb.md \
                          src/usb_rev_hist.md \
                          src/usb_device.md \
                          src/usbd_ref_example.md \
-                         src/dev_hid_tutorial.md \
-                         src/dev_msc_tutorial.md \
-                         src/dev_cdc_tutorial.md \
+                         src/example_dev_hid.md \
+                         src/example_dev_msc.md \
+                         src/example_dev_cdc.md \
                          src/usbd_create.md \
                          src/usb_host.md \
                          src/usbh_ref_example.md \
-                         src/host_hid_tutorial.md \
-                         src/host_msc_tutorial.md \
+                         src/example_host_hid.md \
+                         src/example_host_msc.md \
                          src/usbh_create.md \
                          src/usb_concepts.md \
                          src/usb_classes.md \
