@@ -10,12 +10,13 @@ The graphical LCD on the evaluation board is used to show the keyboard inputs. T
 
 The USB Host Keyboard project is available as part of the \ref usbh_ref_example "USB Host Reference example".
 
-**Application Source Files**
+<h2>Application Source Files</h2>
+
+Following files implement application-specific logic in the example:
 
  - `Keyboard.c`: contains the main C function that initializes the board hardware and the USB Host Component. It also reads the input from the attached keyboard.
- - `stdout_display.c`: retargets the function `stdout_putchar` to the function `GLCD_DrawChar` of the graphics display.
 
-**Software Components Configuration Files**
+<h2>Software Components Configuration Files</h2>
 
 Configuration files for the software components used in the project are available in the `/RTE/` directory and can be modified by users to adjust the operation of related components. Section \ref usbh_rte_components gives an overview about the components and their dependencies.
 
@@ -28,25 +29,29 @@ Following configuration files are provided with this example:
  - For the CMSIS components, in the `/RTE/CMSIS/` folder:
    - `RTX_Config.h` and `RTX_Config.h`: [CMSIS-RTX Configuration files](https://arm-software.github.io/CMSIS-RTX/latest/config_rtx5.html) for the RTOS Kernel.
 
-When a board layer is added to the project, corresponding configuration files for the board and device component will become available in the local `/RTE` directory as well.
+When a board layer is added to the project, corresponding configuration files for the board and device components will become available in the local `/Board/` directory.
 
-**Board Layer**
+<h2>Board Layer</h2>
 
-In order to build the USB Device Host Keyboard project it shall be extended with a compatible board layer that provides following CMSIS-Driver interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
- - `CMSIS_USB_Host`
+In order to build the USB Device Host Keyboard project it shall be extended with a compatible board layer that provides following interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
+ - `CMSIS_USB_Host`: CMSIS-Driver for USB Host interface
+
 
 ## Build the Project {#prj_build_host_hid}
 
-Open the **USB Host** Reference Example and select **HID** as an active project for the build process. Make sure the compatible board layer is configured.
+[Working with MDK-Middleware Examples](../General/working_with_examples.html) explains the workflow for accessing, configuring and building an MDK-Middleware example project for your target hardware.
 
-Section [Working with MDK-Middleware Examples](../General/working_with_examples.html) explains in more details how to access, configure and build an MDK-Middleware example project for your target hardware.
+ -# Open the **USB_Host** MDK-Middleware reference example.
+ -# Make sure the compatible board layer is configured.
+ -# Select **Keyboard** as an active project for the build process.
+ -# Build the project and observe that no errors are reported.
 
 ## Run the Example {#prj_run_host_hid}
 
 Board-specific setup such as jumpers, USB ports, power supply, etc. is documented in the board layer description (`README.md`) of your selected target.
 
- - Load the firmware image to your development board.
- - Connect a USB keyboard to one of the development board's USB connectors.
- - After downloading the compiled firmware onto the board, you should be able to see something similar on the graphics display:
+ -# Load the firmware image to the target development board.
+ -# Connect a USB keyboard to the USB Host port on the development board.
+ -# When the program runs on the board you should be able to see something similar on the graphics display:
 
 ![USB host keyboard example output](usbh_keyboard_glcd.png)

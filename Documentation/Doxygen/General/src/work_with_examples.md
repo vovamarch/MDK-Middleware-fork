@@ -1,9 +1,22 @@
 # Working with MDK-Middleware Examples {#working_with_examples}
 
-The MDK-Middlware examples are [CMSIS-Toolbox Referernce Applications](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md)
-that use [CMSIS-Driver](https://arm-software.github.io/CMSIS_6/latest/Driver/index.html) interfaces. These Reference Applications are hardware agnostic and need to be extended with a [board layer](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#board-layer) to run on a specific hardware or evaluation board.
+The MDK-Middlware examples are implemented as [CMSIS-Toolbox Referernce Applications](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md)
+that use [CMSIS-Driver](https://arm-software.github.io/CMSIS_6/latest/Driver/index.html) interfaces. These Reference Applications are hardware agnostic and need to be extended with a compatible [board layer](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#board-layer) to run on a specific hardware target.
 
-Several CMSIS Board Support Packs (BSP) available in [github.com/Open-CMSIS-Pack](https://github.com/Open-CMSIS-Pack) contain already board layers that support the MDK-Middleware. When such a board layer is not available, it is possible to [create a compatible board layer](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#structure).
+Several CMSIS Board Support Packs (BSP) available in [github.com/Open-CMSIS-Pack](https://github.com/Open-CMSIS-Pack) contain  board layers that support the MDK-Middleware components. When such a board layer is not available, it is possible to [create a compatible board layer](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#structure).
+
+## Available examples
+
+The examples are provided as part of the MDK-Middleware pack and maintained as part of its GitHub repository, see \ref mw_access.
+
+For detailed list of available examples and their detailed description, see the **Examples** section in the component documentation.
+
+ - [**File System examples**](../FileSystem/fs_examples.html)
+ - [**Network examples**](../Network/nw_examples.html)
+ - [**USB Device examples**](../USB/usbd_ref_example.html)
+ - [**USB Host examples**](../USB/usbh_ref_example.html)
+
+This chapter gives a generic overview on how to access, configure and build an MDK-Middleware example project for your target hardware.
 
 ## Using VS Code
 

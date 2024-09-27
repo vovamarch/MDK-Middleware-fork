@@ -2,7 +2,7 @@
 
 This example implements a USB Device that exchanges data with a USB Host using \ref HID.
 
-A graphical "HID Client" program is available for the USB Host Computer (Windows only) to interface with the target LEDs and buttons on the target USB Device. The following picture shows an exemplary connection of a development board and the USB Host Computer.
+A graphical "HID Client" program is available for the USB Host Computer (Windows only) to interface with the LEDs and buttons on the target USB Device. The following picture shows an exemplary connection of a development board and the USB Host Computer.
 
 ![USB device HID example hardware setup](hid_example_setup.png)
 
@@ -10,12 +10,14 @@ A graphical "HID Client" program is available for the USB Host Computer (Windows
 
 The USB Device HID project is available as part of the \ref usbd_ref_example "USB Device Reference example".
 
-**Application Source Files**
+<h2>Application Source Files</h2>
+
+Following files implement application-specific logic in the example:
 
  - `HID.c`: contains the main C function that initializes the board hardware and the USB Device Component. It also sends the current input status (typical buttons) via \ref USBD_HID_GetReportTrigger to the USB Host.
  - `USBD_User_HID_0.c`: adapted code template that implements necessary functions for I/O communication. Refer to \ref usbd_hidFunctions for details.
 
-**Software Components Configuration Files**
+<h2>Software Components Configuration Files</h2>
 
 Configuration files for the software components used in the project are available in the `/RTE/` directory and can be modified by users to adjust the operation of related components. Section \ref usbd_rte_components gives an overview about the components and their dependencies.
 
@@ -30,38 +32,41 @@ Following configuration files are provided with this example:
 
 When a board layer is added to the project, corresponding configuration files for the board and device components will become available in the local `/RTE/` directory as well.
 
-**Board Layer**
+<h2>Board Layer</h2>
 
-In order to build the USB Device HID project it shall be extended with a compatible board layer that provides following CMSIS-Driver interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
- - `CMSIS_USB_Device`
- - `CMSIS_VIO`
+In order to build the USB Device HID project it shall be extended with a compatible board layer that provides following interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
+ - `CMSIS_USB_Device`: CMSIS-Driver for USB Device interface
+ - `CMSIS_VIO`: CMSIS-Driver for virtual I/O interface
 
 ## Build the Project {#prj_build_dev_hid}
 
-Open the **USB Device** Reference Example and select **HID** as an active project for the build process. Make sure the compatible board layer is configured.
+[Working with MDK-Middleware Examples](../General/working_with_examples.html) explains the workflow for accessing, configuring and building an MDK-Middleware example project for your target hardware.
 
-Section [Working with MDK-Middleware Examples](../General/working_with_examples.html) explains in more details how to access, configure and build an MDK-Middleware example project for your target hardware.
-
+ -# Open the **USB_Device** MDK-Middleware reference example.
+ -# Make sure the compatible board layer is configured.
+ -# Select **HID** as an active project for the build process.
+ -# Build the project and observe that no errors are reported.
 
 ## Run the Example {#prj_run_dev_hid}
 
-**Hardware Setup**
+**Setup**
 
-Board-specific setup such as jumpers, USB ports, power supply, etc are documented in the board layer description (`README.md`) of your selected target. It also lists supported IOs such as LEDs and Buttons.
+Board-specific setup such as jumpers, USB ports, power supply, etc. is documented in the board layer description (`README.md`) of your selected target. It also lists supported IOs such as LEDs and Buttons.
 
- - Load the firmware image to your development board.
- - Use an USB cable to connect your development board to the Host PC and power up your board.
- - Wait for the driver installation on the PC to complete.
+ -# Load the firmware image to the target development board.
+ -# Connect a USB Device port on the development board with the USB port on a PC.
+ -# Wait for the automatic driver installation on the PC to complete.
 
-**PC Software**
+**Example execution**
 
 The USB Device HID example can be tested against a \ref hid_client_app "HID Client utility" that is available for Windows PCs only. The program runs stand-alone without installation.
 
 Steps to check the USB communication using the client utility:
 
- - Run `HIDClient.exe`.
- - Select the **Keil USB Device** to establish the communication channel.
- - Press buttons on the target hardware and/or use the check boxes in the HID Client to interact with the application.
+ -# Run `HIDClient.exe`.
+ -# Select the **Keil USB Device** to establish the communication channel.
+ -# Press buttons on the target hardware and observe the checkmarks appear in corresponding check boxes in the HID Client utility.
+ -# Use the LEDs check boxes in the HID Client and observe LED status changes on the board.
 
 ![Testing the connection with the HID Client app](hid_client_test.png)
 

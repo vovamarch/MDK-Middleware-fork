@@ -12,12 +12,14 @@ The following picture shows an exemplary connection of the development board and
 
 The USB Device Virtual COM port project is available as part of the \ref usbd_ref_example "USB Device Reference example".
 
-**Application Source Files**
+<h2>Application Source Files</h2>
+
+Following files implement application-specific logic in the example:
 
  - `VirtualCOM.c`: contains the main C function for initializing the board hardware and the USB Device Component. It also implements the data internal data exchange between the USB and the UART port.
  - `USBD_User_CDC_ACM_UART_0.c`: adapted code template that implements necessary file access functions. Refer to \ref usbd_cdcFunctions_acm for details.
 
-**Software Components Configuration Files**
+<h2>Software Components Configuration Files</h2>
 
 Configuration files for the software components used in the project are available in the `/RTE/` directory and can be modified by users to adjust the operation of related components. Section \ref usbd_rte_components gives an overview about the components and their dependencies.
 
@@ -32,31 +34,34 @@ Following configuration files are provided with this example:
 
 When a board layer is added to the project, corresponding configuration files for the board and device components will become available in the local `/RTE/` directory as well.
 
-**Board Layer**
+<h2>Board Layer</h2>
 
-In order to build the USB Device Virtual COM port project it needs to be extended with a compatible board layer that provides following CMSIS-Driver interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
- - `CMSIS_USB_Device`
- - `CMSIS_VIO`
- - `CMSIS_USART`
+In order to build the USB Device HID project it shall be extended with a compatible board layer that provides following interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
+ - `CMSIS_USB_Device`: CMSIS-Driver for USB Device interface
+ - `CMSIS_VIO`: CMSIS-Driver for virtual I/O interface
+ - `CMSIS_USART`: CMSIS-Driver for USART interface
 
 ## Build the Project {#prj_build_dev_cdc}
 
-Open the **USB Device** Reference Example and select **CDC** as an active project for the build process. Make sure the compatible board layer is configured.
+[Working with MDK-Middleware Examples](../General/working_with_examples.html) explains the workflow for accessing, configuring and building an MDK-Middleware example project for your target hardware.
 
-Section [Working with MDK-Middleware Examples](../General/working_with_examples.html) explains in more details how to access, configure and build an MDK-Middleware example project for your target hardware.
+ -# Open the **USB_Device** MDK-Middleware reference example.
+ -# Make sure the compatible board layer is configured.
+ -# Select **VirtualCOM** as an active project for the build process.
+ -# Build the project and observe that no errors are reported.
 
 
 ## Run the Example {#prj_run_dev_cdc}
 
-**Hardware Setup**
+**Setup**
 
-Board-specific setup such as jumpers, USB ports, power supply, etc are documented in the board layer description (`README.md`) of your selected target. It also lists supported IOs such as LEDs and Buttons.
+Board-specific setup such as jumpers, USB ports, power supply, etc. is documented in the board layer description (`README.md`) of your selected target. It also lists supported IOs such as LEDs and Buttons.
 
- - Load the firmware image to your development board.
- - Connect the UART on the development board to your PC (you might need an USB to serial RS232 adapter). Use an USB cable to connect your development board to the Host PC and power up your board.
- - The **Welcome to the Found New Hardware Wizard** appears. Installation of the driver is described in detail in the `Abstract.txt` file.
+ -# Load the firmware image to your development board.
+ -# Connect the UART on the development board to your PC (you might need an USB to serial RS232 adapter). Use an USB cable to connect your development board to the Host PC and power up your board.
+ -# The **Welcome to the Found New Hardware Wizard** appears. Installation of the driver is described in detail in the `Abstract.txt` file.
 
-**PC Software**
+**Example execution**
 
 The USB Device Virtual COM example can be tested using a terminal emulation program. Please download an appropriate program for this purpose (such as **PuTTY** for example). Open the two COM ports "COMx" and "COMy". Any data from "COMx" will be echoed on "COMy" and visa versa:
 
@@ -85,5 +90,5 @@ Driver setup information file should be adapted in the following way:
  - **[Strings]** section should be changed as desired
 
 \note
- - Vendor ID and Product ID are configured in the USBD_Config_n.h configuration file of the embedded application.
+ - Vendor ID and Product ID are configured in the `USBD_Config_0.h` configuration file of the embedded application.
  - For producing digitally signed driver catalog file please refer to Microsoft Windows documentation.

@@ -1,18 +1,23 @@
-# SMTP Client {#SMTP_Client_Example}
+# BSD Client {#BSD_Client_Example}
 
-SMTP is used for sending e-mail notifications from an embedded system to various recipients. This example shows how to setup a SMTP client for this purpose. The following picture shows an exemplary connection of the development board and a Computer.
+The BSD client example implements BSD compliant communication. It shows you how to control the LEDs on the evaluation board of the server via the BSD socket.
 
-![SMTP client hardware setup](smtp_setup.png)
+BSD sockets are often used for network communication as they provide a well-defined API for exchanging data over the network by utilizing TCP and UDP sockets.
+
+An exemplary setup could look like this:
+
+![BSD example hardware setup](bsd_example_setup.png)
 
 ## Project Organization
 
-The SMTP Client project is available as part of the \ref nw_ref_example "Network Reference Example".
+The BSD Client project is available as part of the \ref nw_ref_example "Network Reference Example".
 
 <h2>Application Source Files</h2>
 
 Following files implement application-specific logic in the example:
 
- - `SMTP_Client.c` contains the main C function that initializes the board hardware, the Network Component and provides the IP address of SMTP server. 
+ - `BSD_Client.c`  contains the main C function that initializes the board hardware and the Network Component for the BSD client. It also contains the actual code that is used to communicate with the BSD server.
+
 
 <h2>Software Components Configuration Files</h2>
 
@@ -21,8 +26,7 @@ Configuration files for the software components used in the project are located 
 Following configuration files are provided with this example:
 
  - For the Network component, in `/RTE/Network/` folder:
-   - `Net_Config_SMTP_Client.h`: \ref using_smtpc_conf. "SMTP Client configuration".
-   - `Net_Config_DNS_Client.h`: \ref using_dns_client_conf "DNS Client configuration".
+   - `Net_Config_BSD.h`: \ref using_network_sockets_bsd_conf "BSD Socket configuration".
    - `Net_Config_TCP.h`: \ref using_network_sockets_tcp_conf "TCP Socket configuration".
    - `Net_Config_UDP.h`: \ref using_network_sockets_udp_conf "UDP Socket configuration".
    - `Net_Config_ETH_0.h`: \ref using_ethernet_interfaces_conf "Ethernet Interface configuration".
@@ -31,11 +35,12 @@ Following configuration files are provided with this example:
  - For the CMSIS components, in the `/RTE/CMSIS/` folder:
    - `RTX_Config.h` and `RTX_Config.h`: [CMSIS-RTX Configuration files](https://arm-software.github.io/CMSIS-RTX/latest/config_rtx5.html) for the RTOS Kernel.
 
-When a board layer is added to the project, corresponding configuration files for the board and device components will become available in the local `/RTE/` directory as well.
+When a board layer is added to the project, corresponding configuration files for the board and device components will become available in the local `/Board/` directory.
+
 
 <h2>Board Layer</h2>
 
-In order to build the SMTP Client project it shall be extended with a compatible board layer that provides following interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
+In order to build the BSD Client project it shall be extended with a compatible board layer that provides following interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
  - `CMSIS_ETH`: CMSIS-Driver for Ethernet interface
  - `CMSIS_VIO`: CMSIS-Driver for virtual I/O interface
  - `STDOUT`: Standard Output redirection
@@ -44,9 +49,9 @@ In order to build the SMTP Client project it shall be extended with a compatible
 
 [Working with MDK-Middleware Examples](../General/working_with_examples.html) explains the workflow for accessing, configuring and building an MDK-Middleware example project for your target hardware.
 
- -# Open the **Network** reference example.
+ -# Open the **Network** MDK-Middleware reference example.
  -# Make sure the compatible board layer is configured.
- -# Select **SMTP Client** as an active project for the build process.
+ -# Select **BSD_Client** as an active project for the build process.
  -# Build the project and observe that no errors are reported.
 
 ## Run the Example
@@ -55,9 +60,11 @@ In order to build the SMTP Client project it shall be extended with a compatible
 
 Board-specific setup such as jumpers, Ethernet ports, power supply, etc. is documented in the board layer description (`README.md`) of your selected target.
 
- -# Load the firmware image to the target development board.
- -# Use an Ethernet cable to connect your development board to the local area network. The PC is assumed to be already in this LAN.
+ -# Load the firmware image to your development board.
+ -# Use an Ethernet cable to connect your development board to the local area network. The PC is assumed to be already a member of this LAN.
 
 **Example execution**
 
-If you have entered your personal e-mail address as the recipient's address, you only need to open your mail program and check your inbox.
+To test this example, you also need a \ref BSD_Server_Example device that you can connect to.
+
+Load a BSD server and start it on another evaluation board connected to the same LAN. When BSD client is running, the LED diodes on both evaluation boards should light up synchronously.

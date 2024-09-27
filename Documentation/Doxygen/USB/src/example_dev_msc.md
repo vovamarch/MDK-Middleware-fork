@@ -2,7 +2,7 @@
 
 This example implements a mass storage USB Device using \ref MSC.
 
-The examples accesses on-chip RAM. The USB Host can then access the new drives using standard file access methods. The following picture shows an exemplary connection of the development board and the USB Host Computer.
+The implementation uses on-chip RAM as a storage device. The USB Host can access this memory drive using standard file access methods. The following picture shows an exemplary connection of the development board and the USB Host Computer.
 
 ![USB device mass storage example hardware setup](msc_dev_example_setup.png)
 
@@ -10,13 +10,15 @@ The examples accesses on-chip RAM. The USB Host can then access the new drives u
 
 The USB Device MSC project is available as part of \ref usbd_ref_example "USB Device Reference example".
 
-**Application Source Files**
+<h2>Application Source Files</h2>
+
+Following files implement application-specific logic in the example:
 
  - `MassStorage.c`: contains the main C function that initializes the board hardware and the USB Device Component.
  - `MemoryDiskImage.c`: a FAT12 disk image with small README.TXT file that gets copied to the RAM disk.
  - `USBD_User_MSC_0.c`: adapted code template that implements necessary file access functions. Refer to \ref usbd_mscFunctions for details about these template functions.
 
-**Software Components Configuration Files**
+<h2>Software Components Configuration Files</h2>
 
 Configuration files for the software components used in the project are available in the `/RTE/` directory and can be modified by users to adjust the operation of related components. Section \ref usbd_rte_components gives an overview about the components and their dependencies.
 
@@ -31,31 +33,39 @@ Following configuration files are provided with this example:
 
 When a board layer is added to the project, corresponding configuration files for the board and device components will become available in the local `/RTE/` directory as well.
 
-**Board Layer**
+<h2>Board Layer</h2>
 
-In order to build the USB Device HID project it needs to be extended with a compatible board layer that provides following CMSIS-Driver interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
- - `CMSIS_USB_Device`
- - `CMSIS_VIO`
+In order to build the USB Device HID project it shall be extended with a compatible board layer that provides following interfaces as [connections](https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/ReferenceApplications.md#connections):
+ - `CMSIS_USB_Device`: CMSIS-Driver for USB Device interface
+ - `CMSIS_VIO`: CMSIS-Driver for virtual I/O interface
+
 
 ## Build the Project {#prj_build_dev_msc}
 
-Open the **USB Device** Reference Example and select **MSC** as an active project for the build process. Make sure the compatible board layer is configured.
+[Working with MDK-Middleware Examples](../General/working_with_examples.html) explains the workflow for accessing, configuring and building an MDK-Middleware example project for your target hardware.
 
-Section [Working with MDK-Middleware Examples](../General/working_with_examples.html) explains in more details how to access, configure and build an MDK-Middleware example project for your target hardware.
+ -# Open the **USB_Device** MDK-Middleware reference example.
+ -# Make sure the compatible board layer is configured.
+ -# Select **MassStorage** as an active project for the build process.
+ -# Build the project and observe that no errors are reported.
+
 
 ## Run the Example {#prj_run_dev_msc}
 
-**Hardware Setup**
+**Setup**
 
-Board-specific setup such as jumpers, USB ports, power supply, etc. are documented in the board layer description (`README.md`) of your selected target.
+Board-specific setup such as jumpers, USB ports, power supply, etc. is documented in the board layer description (`README.md`) of your selected target.
 
- - Load the firmware image to your development board.
- - Use a USB cable to connect your development board to the Host PC and power up your board.
- - Wait for the driver installation on the PC to complete.
+ -# Load the firmware image to the target development board.
+ -# Connect a USB Device port on the development board with the USB port on a PC.
+ -# Wait for the automatic driver installation on the PC to complete.
 
-**PC Software**
 
-On a Windows PC you can test the example using the **Windows Explorer**. After a successful driver installation you can observe **USB_Memory** drive become available. On this drive you can find a single file `README.txt` with the following content:
+**Example execution**
+
+After a successful driver installation on your host PC you can observe **USB_Memory** drive to become accessible from the PC operating system. For example on a Windows PC you should see it appear in the Windows Explorer.
+
+On this drive you can find a single file `README.txt` with the following content:
 
 ```txt
 This is a USB Memory Device Demonstration.
