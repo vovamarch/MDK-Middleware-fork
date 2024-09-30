@@ -1799,7 +1799,7 @@ After giving a \c meas \c 4 command, the Telnet Client screen looks like this:
 
 \image html "telnet_meas.png"
 
-\note You can check the \ref Telnet_Example to see how it works.
+\note You can check the \ref Telnet_Server_Example to see how it works.
 */
 
 
